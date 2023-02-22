@@ -1,21 +1,32 @@
 package pl.naukaslowek.UserService;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.validator.constraints.NotBlank;
+
 
 @Entity
-public class UserDto {
+@Table(name = "USER_ACCOUNT")
+class UserDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank
     private String login;
+    @NotBlank
     private String password;
 
-    public UserDto() {
+    public UserDto(String login, String password) {
+        this.login = login;
+        this.password = password;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
 
